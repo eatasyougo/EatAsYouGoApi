@@ -8,6 +8,7 @@ using Swagger.Net.Swagger.Annotations;
 
 namespace EatAsYouGoApi.Controllers
 {
+    [Authorize]
     public class RestaurantController : BaseController
     {
         private readonly IRestaurantService _restaurantService;
@@ -19,6 +20,7 @@ namespace EatAsYouGoApi.Controllers
 
         [SwaggerDescription("Gets all restaurants", "Gets all restaurants")]
         [Route("api/restaurants/get")]
+        [AllowAnonymous]
         public IHttpActionResult Get()
         {
             try
@@ -51,6 +53,7 @@ namespace EatAsYouGoApi.Controllers
 
         [SwaggerDescription("Gets all restaurants by cuisine type", "Gets all restaurants by cuisine type")]
         [Route("api/restaurants/cuisineType/{cuisineType}")]
+        [AllowAnonymous]
         public IHttpActionResult GetAllRestaurantsByCuisineType(string cuisineType)
         {
             try
@@ -67,6 +70,7 @@ namespace EatAsYouGoApi.Controllers
 
         [SwaggerDescription("Gets all restaurants by post code", "Gets all restaurants by post code")]
         [Route("api/restaurants/postCode/{postCode}")]
+        [AllowAnonymous]
         public IHttpActionResult GetRestaurantByPostCode(string postCode)
         {
             try
@@ -83,6 +87,7 @@ namespace EatAsYouGoApi.Controllers
 
         [SwaggerDescription("Gets all restaurants by name", "Gets all restaurants by name")]
         [Route("api/restaurants/name/{name}")]
+        [AllowAnonymous]
         public IHttpActionResult GetRestaurantsByName(string name)
         {
             try

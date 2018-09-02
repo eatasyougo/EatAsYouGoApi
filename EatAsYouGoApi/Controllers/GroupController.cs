@@ -6,6 +6,7 @@ using Swagger.Net.Swagger.Annotations;
 
 namespace EatAsYouGoApi.Controllers
 {
+    [Authorize]
     public class GroupController : BaseController
     {
         private readonly IGroupService _groupService;

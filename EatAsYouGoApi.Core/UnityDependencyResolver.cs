@@ -8,7 +8,7 @@ namespace EatAsYouGoApi.Core
 {
     public class UnityDependencyResolver:IDependencyResolver
     {
-        protected IUnityContainer Container;
+        public IUnityContainer Container;
 
         public UnityDependencyResolver(IUnityContainer container)
         {

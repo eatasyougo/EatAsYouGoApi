@@ -1,9 +1,13 @@
 ﻿using System.Net.Http.Formatting;
 using System.Web.Http;
 using AutoMapper;
+using EatAsYouGoApi.Authentication;
 using EatAsYouGoApi.Core;
+using EatAsYouGoApi.Filters;
+using EatAsYouGoApi.Services.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Unity;
 
 namespace EatAsYouGoApi
 {
@@ -13,6 +17,13 @@ namespace EatAsYouGoApi
         {
             UnityRegistrations.Register(config);
             Mapper.Initialize(cfg => cfg.AddProfile(new AutoMapperProfile()));
+
+            // Add filters
+            //var unityDependencyResolver = config.DependencyResolver as UnityDependencyResolver;
+            //var userService = unityDependencyResolver?.Container.Resolve<IUserService>();
+            //config.Filters.Add(new JsonTokenAuthenticationFilter(userService));
+
+            config.MessageHandlers.Add(new TokenValidationHandler());
 
             // Web API configuration and services
             config.Formatters.Remove(config.Formatters.XmlFormatter);

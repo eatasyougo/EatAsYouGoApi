@@ -11,7 +11,7 @@ namespace EatAsYouGoApi.Services.Interfaces
 
         DealDto GetDealById(long dealId);
 
-        DealDto AddNewDeal(DealDto deal);
+        DealDto AddNewDeal(DealDto dealDto);
 
         DealDto UpdateDeal(DealDto dealDto);
 

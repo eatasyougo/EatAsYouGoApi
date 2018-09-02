@@ -6,6 +6,7 @@ using Swagger.Net.Swagger.Annotations;
 
 namespace EatAsYouGoApi.Controllers
 {
+    [Authorize]
     public class MenuItemsController : BaseController
     {
         private readonly IMenuItemService _menuItemService;
@@ -17,6 +18,7 @@ namespace EatAsYouGoApi.Controllers
 
         [SwaggerDescription("Gets all menu items", "Gets all menu items")]
         [Route("api/menuItems")]
+        [AllowAnonymous]
         public IHttpActionResult Get()
         {
             var menuItems = _menuItemService.GetAllMenuItems();
@@ -25,6 +27,7 @@ namespace EatAsYouGoApi.Controllers
 
         [SwaggerDescription("Gets menu item by id", "Gets menu item by id")]
         [Route("api/menuItems/{menuItemId}")]
+        [AllowAnonymous]
         public IHttpActionResult Get(long menuItemId)
         {
             var menuItem = _menuItemService.GetMenuItemById(menuItemId);
@@ -33,6 +36,7 @@ namespace EatAsYouGoApi.Controllers
 
         [SwaggerDescription("Gets all menu items for a restaurant by restaurant id", "Gets all menu items for a restaurant by restaurant id")]
         [Route("api/restaurants/{restaurantId}/menuItems")]
+        [AllowAnonymous]
         public IHttpActionResult GetAllMenuItemsForARestaurant(long restaurantId)
         {
             var menuItems = _menuItemService.GetAllMenuItemsForARestaurant(restaurantId);
@@ -41,6 +45,7 @@ namespace EatAsYouGoApi.Controllers
 
         [SwaggerDescription("Gets all menu items by name", "Gets all menu items by name")]
         [Route("api/menuItems/name/{menuItemName}")]
+        [AllowAnonymous]
         public IHttpActionResult GetAllMenuItemsByName(string menuItemName)
         {
             var menuItems = _menuItemService.GetAllMenuItemsByName(menuItemName);

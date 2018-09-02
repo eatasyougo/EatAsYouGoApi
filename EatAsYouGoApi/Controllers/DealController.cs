@@ -6,6 +6,7 @@ using Swagger.Net.Swagger.Annotations;
 
 namespace EatAsYouGoApi.Controllers
 {
+    [Authorize]
     public class DealController : BaseController
     {
         private readonly IDealService _dealService;
@@ -17,6 +18,7 @@ namespace EatAsYouGoApi.Controllers
 
         [SwaggerDescription("Gets all deals for all restaurants.", "Gets all deals for all restaurants")]
         [Route("api/deals")]
+        [AllowAnonymous]
         public IHttpActionResult GetAllDeals()
         {
             var allDeals = _dealService.GetAllDeals();
@@ -25,6 +27,7 @@ namespace EatAsYouGoApi.Controllers
 
         [SwaggerDescription("Gets all deals for a restaurant.", "Gets all deals for a restaurant")]
         [Route("api/restaurants/{restaurantId}/deals")]
+        [AllowAnonymous]
         public IHttpActionResult GetAllDealsForARestaurant(long restaurantId)
         {
             var allDeals = _dealService.GetAllDealsForARestaurant(restaurantId);
@@ -33,6 +36,7 @@ namespace EatAsYouGoApi.Controllers
 
         [SwaggerDescription("Gets deal by deal id.", "Gets deal by deal id")]
         [Route("api/deals/{dealId}")]
+        [AllowAnonymous]
         public IHttpActionResult GetDealById(long dealId)
         {
             var deal = _dealService.GetDealById(dealId);

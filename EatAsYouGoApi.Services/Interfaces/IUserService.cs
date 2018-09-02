@@ -16,5 +16,7 @@ namespace EatAsYouGoApi.Services.Interfaces
         void RemoveUser(long userId);
 
         UserDto UpdateUser(UserDto userDto);
+
+        UserDto GetUserByEmailAndPassword(string email, string password);
     }
 }

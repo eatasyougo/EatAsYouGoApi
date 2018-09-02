@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Web.Http;
 using EatAsYouGoApi.Dtos;
 using EatAsYouGoApi.Services.Interfaces;
@@ -6,6 +7,7 @@ using Swagger.Net.Swagger.Annotations;
 
 namespace EatAsYouGoApi.Controllers
 {
+    [Authorize]
     public class UserController : BaseController
     {
         private readonly IUserService _userService;
@@ -69,6 +71,7 @@ namespace EatAsYouGoApi.Controllers
 
         [SwaggerDescription("Add new user", "Adds new user")]
         [Route("api/users/add")]
+        [HttpPost]
         public IHttpActionResult AddNewUser(UserDto userDto)
         {
             try
