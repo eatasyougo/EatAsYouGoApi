@@ -3,7 +3,6 @@ using System.Web.Http;
 using AutoMapper;
 using EatAsYouGoApi.Authentication;
 using EatAsYouGoApi.Core;
-using EatAsYouGoApi.Filters;
 using EatAsYouGoApi.Services.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
