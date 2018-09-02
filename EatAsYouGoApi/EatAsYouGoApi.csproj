@@ -292,7 +292,6 @@
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="ExceptionHandling\UnhandledExceptionLogger.cs" />
-    <Compile Include="Filters\JsonTokenAuthenticationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
