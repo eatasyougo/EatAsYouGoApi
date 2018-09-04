@@ -11,6 +11,9 @@ namespace EatAsYouGoApi.Dtos
         public long DealId { get; set; }
 
         [DataMember]
+        public long RestaurantId { get; set; }
+
+        [DataMember]
         public string DealName { get; set; }
 
         [DataMember]
