@@ -1,3 +1,4 @@
+
 namespace EatAsYouGoApi.DataLayer.Migrations
 {
     using System;

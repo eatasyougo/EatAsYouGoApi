@@ -8,6 +8,10 @@ using EatAsYouGoApi.Services.Interfaces;
 
 namespace EatAsYouGoApi.Services
 {
+    public class OrderService 
+    {
+
+    }
     public class DealService : IDealService
     {
         private readonly IDealDataProvider _dealDataProvider;

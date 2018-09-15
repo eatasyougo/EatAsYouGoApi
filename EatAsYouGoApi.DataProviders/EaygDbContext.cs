@@ -28,5 +28,9 @@ namespace EatAsYouGoApi.DataLayer
         public DbSet<GroupPermission> GroupPermissions { get; set; }
 
         public DbSet<DealMenuItem> DealMenuItems { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<OrderDetails> OrderDetails { get; set; }
     }
 }

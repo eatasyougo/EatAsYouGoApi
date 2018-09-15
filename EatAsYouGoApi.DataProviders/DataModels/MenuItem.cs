@@ -28,6 +28,8 @@ namespace EatAsYouGoApi.DataLayer.DataModels
 
         public virtual ICollection<DealMenuItem> DealMenuItems { get; set; }
 
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+
         public virtual Restaurant Restaurant { get; set; }
     }
 }

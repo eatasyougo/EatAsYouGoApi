@@ -66,6 +66,8 @@
     <Compile Include="DataModels\DealMenuItem.cs" />
     <Compile Include="DataModels\GroupPermission.cs" />
     <Compile Include="DataModels\MenuItem.cs" />
+    <Compile Include="DataModels\Order.cs" />
+    <Compile Include="DataModels\OrderDetails.cs" />
     <Compile Include="DataModels\Restaurant.cs" />
     <Compile Include="DataModels\Group.cs" />
     <Compile Include="DataModels\Permission.cs" />
@@ -88,6 +90,10 @@
     <Compile Include="Migrations\201808121734230_InitialDatabaseSetup.Designer.cs">
       <DependentUpon>201808121734230_InitialDatabaseSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809151437527_Orders.cs" />
+    <Compile Include="Migrations\201809151437527_Orders.Designer.cs">
+      <DependentUpon>201809151437527_Orders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -98,6 +104,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201808121734230_InitialDatabaseSetup.resx">
       <DependentUpon>201808121734230_InitialDatabaseSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809151437527_Orders.resx">
+      <DependentUpon>201809151437527_Orders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
