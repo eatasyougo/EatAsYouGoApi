@@ -278,15 +278,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Authentication\Authentication.cs" />
+    <Compile Include="Authentication\AuthorizeGroupsAttribute.cs" />
     <Compile Include="Authentication\TokenValidationHandler.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DealController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
+    <Compile Include="Controllers\Group.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuItemsController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
@@ -302,6 +307,7 @@
     <Content Include="log4net.config" />
     <Content Include="Metadata\deploymentTemplates\apiappconfig.azureresource.json" />
     <Content Include="apiapp.json" />
+    <None Include="Properties\PublishProfiles\EatAsYouGoApi - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

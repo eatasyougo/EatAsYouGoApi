@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Web.Http;
+using EatAsYouGoApi.Authentication;
 using EatAsYouGoApi.Dtos;
 using EatAsYouGoApi.Services.Interfaces;
 using Swagger.Net.Swagger.Annotations;
 
 namespace EatAsYouGoApi.Controllers
 {
-    [Authorize]
+    [AuthorizeGroups(Groups = "SiteAdministrators")]
     public class GroupController : BaseController
     {
         private readonly IGroupService _groupService;
@@ -91,7 +92,7 @@ namespace EatAsYouGoApi.Controllers
         [SwaggerDescription("Updates a group", "Updates a group")]
         [Route("api/groups/update")]
         [HttpPost]
-        public IHttpActionResult UpdateRestaurant(GroupDto groupDto)
+        public IHttpActionResult UpdateGroup(GroupDto groupDto)
         {
             try
             {

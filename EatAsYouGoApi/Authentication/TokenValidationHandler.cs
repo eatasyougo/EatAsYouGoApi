@@ -13,6 +13,7 @@ namespace EatAsYouGoApi.Authentication
 {
     public class TokenValidationHandler : DelegatingHandler
     {
+        private const string WebUrl = "http://eatasyougoapi.azurewebsites.net";
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             HttpStatusCode statusCode;
@@ -33,8 +34,8 @@ namespace EatAsYouGoApi.Authentication
                 var handler = new JwtSecurityTokenHandler();
                 var validationParameters = new TokenValidationParameters()
                 {
-                    ValidAudience = "http://localhost:50191",
-                    ValidIssuer = "http://localhost:50191",
+                    ValidAudience = WebUrl,
+                    ValidIssuer = WebUrl,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     LifetimeValidator = this.LifetimeValidator,
@@ -57,7 +58,7 @@ namespace EatAsYouGoApi.Authentication
                 statusCode = HttpStatusCode.InternalServerError;
             }
 
-            return Task<HttpResponseMessage>.Factory.StartNew(() => new HttpResponseMessage(statusCode) { });
+            return Task<HttpResponseMessage>.Factory.StartNew(() => new HttpResponseMessage(statusCode));
         }
 
         public bool LifetimeValidator(DateTime? notBefore, DateTime? expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
@@ -71,10 +72,10 @@ namespace EatAsYouGoApi.Authentication
         private static bool TryRetrieveToken(HttpRequestMessage request, out string token)
         {
             token = null;
-            IEnumerable<string> authzHeaders;
-            request.Headers.TryGetValues("Authorization", out authzHeaders);
+            IEnumerable<string> authorizationHeaders;
+            request.Headers.TryGetValues("Authorization", out authorizationHeaders);
 
-            var authHeaders = authzHeaders?.ToList();
+            var authHeaders = authorizationHeaders?.ToList();
             if ( authHeaders == null || authHeaders.Count > 1)
                 return false;
 

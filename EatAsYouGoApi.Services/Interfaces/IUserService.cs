@@ -17,6 +17,6 @@ namespace EatAsYouGoApi.Services.Interfaces
 
         UserDto UpdateUser(UserDto userDto);
 
-        UserDto GetUserByEmailAndPassword(string email, string password);
+        UserDto GetUserByEmailAndPassword(string email, string password, bool includeGroups);
     }
 }

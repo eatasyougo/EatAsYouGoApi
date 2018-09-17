@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Net;
 using System.Web.Http;
+using EatAsYouGoApi.Authentication;
 using EatAsYouGoApi.Dtos;
 using EatAsYouGoApi.Services.Interfaces;
 using Swagger.Net.Swagger.Annotations;
 
 namespace EatAsYouGoApi.Controllers
 {
-    [Authorize]
+    [AuthorizeGroups(Groups = "SiteAdministrators")]
     public class UserController : BaseController
     {
         private readonly IUserService _userService;
@@ -129,26 +130,5 @@ namespace EatAsYouGoApi.Controllers
                 return CreateErrorResponse(exception.Message, exception);
             }
         }
-
-        //[SwaggerDescription("Validate user", "Validate user")]
-        //[Route("api/users/validate")]
-        //[HttpPost]
-        //public IHttpActionResult ValidateUser(UserDto userDto)
-        //{
-        //    try
-        //    {
-        //        var validated = _userService.ValidateUser(userDto);
-
-        //        if (validated)
-        //            CreateErrorResponse("Failed to validate user");
-
-        //        return CreateResponse(userDto);
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        LogError(this.GetType(), exception.Message);
-        //        return CreateErrorResponse(exception.Message, exception);
-        //    }
-        //}
     }
 }

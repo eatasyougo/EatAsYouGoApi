@@ -12,10 +12,12 @@ namespace EatAsYouGoApi.Services
     public class UserService : IUserService
     {
         private readonly IUserDataProvider _userDataProvider;
+        private readonly IGroupDataProvider _groupDataProvider;
 
-        public UserService(IUserDataProvider userDataProvider)
+        public UserService(IUserDataProvider userDataProvider, IGroupDataProvider groupDataProvider)
         {
             _userDataProvider = userDataProvider;
+            _groupDataProvider = groupDataProvider;
         }
 
         public IEnumerable<UserDto> GetAllUsers(bool showActiveUsersOnly = false)
@@ -72,10 +74,21 @@ namespace EatAsYouGoApi.Services
             return updatedUserDto;
         }
 
-        public UserDto GetUserByEmailAndPassword(string email, string password)
+        public UserDto GetUserByEmailAndPassword(string email, string password, bool includeGroups)
         {
             var user = _userDataProvider.GetUserByEmailAndPassword(email, password);
-            return Mapper.Map<User, UserDto>(user);
+            List<GroupDto> groupDtos = null;
+
+            if (includeGroups && user?.UserGroups != null)
+            {
+                var groups = user.UserGroups.Select(ug => _groupDataProvider.GetGroupById(ug.GroupId)).ToList();
+                groupDtos = groups.Select(Mapper.Map<Group, GroupDto>).ToList();
+            }
+
+            var userDto = Mapper.Map<User, UserDto>(user);
+            userDto.Groups = groupDtos;
+
+            return userDto;
         }
     }
 }
