@@ -16,6 +16,8 @@ namespace EatAsYouGoApi.Core
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<Group, GroupDto>().ReverseMap();
             CreateMap<Permission, PermissionDto>().ReverseMap();
+            CreateMap<Order, OrderDto>().ReverseMap();
+            CreateMap<OrderDetails, OrderDetailsDto>().ReverseMap();
         }
     }
 }

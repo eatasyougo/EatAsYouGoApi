@@ -38,17 +38,23 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Stripe.net, Version=19.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stripe.net.19.7.0\lib\net45\Stripe.net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Http, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
@@ -68,6 +74,7 @@
     <Compile Include="DataModels\MenuItem.cs" />
     <Compile Include="DataModels\Order.cs" />
     <Compile Include="DataModels\OrderDetails.cs" />
+    <Compile Include="DataModels\OrderStatus.cs" />
     <Compile Include="DataModels\Restaurant.cs" />
     <Compile Include="DataModels\Group.cs" />
     <Compile Include="DataModels\Permission.cs" />
@@ -80,7 +87,9 @@
     <Compile Include="DataProviders\Interfaces\IMenuItemDataProvider.cs" />
     <Compile Include="DataProviders\Interfaces\IRestaurantDataProvider.cs" />
     <Compile Include="DataProviders\Interfaces\IUserDataProvider.cs" />
+    <Compile Include="DataProviders\IOrderDataProvider.cs" />
     <Compile Include="DataProviders\MenuItemDataProvider.cs" />
+    <Compile Include="DataProviders\OrderDataProvider.cs" />
     <Compile Include="DataProviders\RestaurantDataProvider.cs" />
     <Compile Include="DataProviders\UserDataProvider.cs" />
     <Compile Include="DbContextFactory.cs" />

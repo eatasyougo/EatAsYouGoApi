@@ -3,60 +3,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using EatAsYouGoApi.DataLayer.DataModels;
 using EatAsYouGoApi.DataLayer.DataProviders.Interfaces;
 
 namespace EatAsYouGoApi.DataLayer.DataProviders
 {
-    public class OrderDataProvider
-    {
-        //private readonly IDbContextFactory<EaygDbContext> _dbContextFactory;
-
-        //public OrderDataProvider(IDbContextFactory<EaygDbContext> dbContextFactory)
-        //{
-        //    _dbContextFactory = dbContextFactory;
-        //}
-
-        //public IEnumerable<Order> GetAllOrders()
-        //{
-        //    using (var dbContext = _dbContextFactory.Create())
-        //    {
-        //        return dbContext.Orders
-        //            .Include(o => o.OrderDetails)
-        //            .Include(o => o.Restaurant)
-        //            .Include(o => o.User);
-
-        //    }
-        //}
-
-        //public IEnumerable<Order> GetOrderById(int orderId)
-        //{
-        //    using (var dbContext = _dbContextFactory.Create())
-        //    {
-        //        return dbContext.Orders
-        //            .Where(o => o.OrderId == orderId)
-        //            .Include(o => o.OrderDetails)
-        //            .Include(o => o.Restaurant)
-        //            .Include(o => o.User);
-
-        //    }
-        //}
-
-        //public Order AddOrder(Order order)
-        //{
-        //    using (var dbContext = _dbContextFactory.Create())
-        //    {
-        //        dbContext.Orders.a
-        //        dbContext.Orders.Add(order);
-        //        dbContext.SaveChanges();
-        //        return order;
-        //    }
-        //}
-
-        //public Order UpdateOrder
-    }
-
     public class DealDataProvider : IDealDataProvider
     {
         private readonly IDbContextFactory<EaygDbContext> _dbContextFactory;

@@ -11,6 +11,8 @@ namespace EatAsYouGoApi.DataLayer.DataModels
         [Required]
         public string Name { get; set; }
 
+        public string StripeAccountId { get; set; }
+
         public string CuisineType { get; set; }
 
         public bool IsActive { get; set; }

@@ -11,7 +11,10 @@ namespace EatAsYouGoApi.Dtos
 
         [DataMember]
         public string Name { get; set; }
-        
+
+        [DataMember]
+        public string StripeAccountId { get; set; }
+
         [DataMember]
         public string CuisineType { get; set; }
 

@@ -21,11 +21,13 @@ namespace EatAsYouGoApi.Core
             container.RegisterType<IUserDataProvider, UserDataProvider>(new ContainerControlledLifetimeManager());
             container.RegisterType<IGroupDataProvider, GroupDataProvider>(new ContainerControlledLifetimeManager());
             container.RegisterType<IDealDataProvider, DealDataProvider>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IOrderDataProvider, OrderDataProvider>(new ContainerControlledLifetimeManager());
             container.RegisterType<IRestaurantService, RestaurantService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IMenuItemService, MenuItemService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IUserService, UserService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IGroupService, GroupService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IDealService, DealService>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IOrderService, OrderService>(new ContainerControlledLifetimeManager());
             container.RegisterType(typeof (IDbContextFactory<>), typeof (DbContextFactory<>), new TransientLifetimeManager());
             config.DependencyResolver = new UnityDependencyResolver(container);
         }
