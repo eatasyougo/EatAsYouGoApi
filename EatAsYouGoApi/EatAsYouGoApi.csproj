@@ -327,6 +327,10 @@
       <Project>{A6D50A29-B33F-4DD9-8FCA-A187DD127904}</Project>
       <Name>EatAsYouGoApi.Dtos</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EatAsYouGoApi.Helper\EatAsYouGoApi.Helper.csproj">
+      <Project>{5F004625-9A51-4ABF-9422-D9BF49DF1353}</Project>
+      <Name>EatAsYouGoApi.Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EatAsYouGoApi.Services\EatAsYouGoApi.Services.csproj">
       <Project>{950D8134-A124-4E67-8D09-C8E6AC2509CD}</Project>
       <Name>EatAsYouGoApi.Services</Name>

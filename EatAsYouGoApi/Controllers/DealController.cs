@@ -49,7 +49,7 @@ namespace EatAsYouGoApi.Controllers
             try
             {
                 if (deal == null)
-                    CreateErrorResponse($"Parameter {nameof(deal)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(deal)} cannot be null");
 
                 var newDeal = _dealService.AddNewDeal(deal);
                 return CreateResponse(newDeal);
@@ -67,8 +67,16 @@ namespace EatAsYouGoApi.Controllers
         [AuthorizeGroups(Groups = "SiteAdministrators,RestaurantUsers")]
         public IHttpActionResult UpdateDeal(DealDto deal)
         {
-            var updatedDeal = _dealService.UpdateDeal(deal);
-            return CreateResponse(updatedDeal);
+            try
+            {
+                var updatedDeal = _dealService.UpdateDeal(deal);
+                return CreateResponse(updatedDeal);
+            }
+            catch (Exception exception)
+            {
+                LogError(this.GetType(), exception.Message);
+                return CreateErrorResponse(exception.Message, exception);
+            }
         }
 
         [SwaggerDescription("Removes a deal", "Removes a deal")]
@@ -80,7 +88,7 @@ namespace EatAsYouGoApi.Controllers
             try
             {
                 if (dealId == 0)
-                    CreateErrorResponse($"Parameter {nameof(dealId)} must be greater than 0");
+                    return CreateErrorResponse($"Parameter {nameof(dealId)} must be greater than 0");
 
                 _dealService.DeleteDeal(dealId);
                 return CreateEmptyResponse();

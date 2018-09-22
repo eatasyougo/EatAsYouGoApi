@@ -15,11 +15,6 @@ namespace EatAsYouGoApi
             UnityRegistrations.Register(config);
             Mapper.Initialize(cfg => cfg.AddProfile(new AutoMapperProfile()));
 
-            // Add filters
-            //var unityDependencyResolver = config.DependencyResolver as UnityDependencyResolver;
-            //var userService = unityDependencyResolver?.Container.Resolve<IUserService>();
-            //config.Filters.Add(new JsonTokenAuthenticationFilter(userService));
-
             config.MessageHandlers.Add(new TokenValidationHandler());
 
             // Web API configuration and services

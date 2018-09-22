@@ -105,7 +105,7 @@ namespace EatAsYouGoApi.Controllers
             try
             {
                 if (restaurantDto == null)
-                    CreateErrorResponse($"Parameter {nameof(restaurantDto)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(restaurantDto)} cannot be null");
 
                 var savedRestaurantDto = _restaurantService.AddNewRestaurant(restaurantDto);
                 return CreateResponse(savedRestaurantDto);
@@ -126,7 +126,7 @@ namespace EatAsYouGoApi.Controllers
             try
             {
                 if (restaurantId == 0)
-                    CreateErrorResponse($"Parameter {nameof(restaurantId)} must be greater than 0");
+                    return CreateErrorResponse($"Parameter {nameof(restaurantId)} must be greater than 0");
 
                 _restaurantService.RemoveRestaurant(restaurantId);
                 return CreateEmptyResponse();
@@ -147,7 +147,7 @@ namespace EatAsYouGoApi.Controllers
             try
             {
                 if (restaurantDto == null)
-                    CreateErrorResponse($"Parameter {nameof(restaurantDto)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(restaurantDto)} cannot be null");
 
                 var updatedRestaurantDto = _restaurantService.UpdateRestaurant(restaurantDto);
                 return CreateResponse(updatedRestaurantDto);

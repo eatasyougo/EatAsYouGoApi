@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using System.Web.Http;
 using EatAsYouGoApi.Authentication;
 using EatAsYouGoApi.Dtos;
@@ -58,10 +57,9 @@ namespace EatAsYouGoApi.Controllers
             {
                 var user = _userService.GetUserByEmail(email);
 
-                if (user == null)
-                    CreateErrorResponse($"No user found with email - {email}");
-
-                return CreateResponse(user);
+                return user == null 
+                    ? CreateErrorResponse($"No user found with email - {email}") 
+                    : CreateResponse(user);
             }
             catch (Exception exception)
             {
@@ -78,7 +76,7 @@ namespace EatAsYouGoApi.Controllers
             try
             {
                 if (userDto == null)
-                    CreateErrorResponse($"Parameter {nameof(userDto)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(userDto)} cannot be null");
 
                 var user = _userService.AddNewUser(userDto);
                 return CreateResponse(user);
@@ -99,10 +97,10 @@ namespace EatAsYouGoApi.Controllers
             try
             {
                 if (userId == 0)
-                    CreateErrorResponse($"Parameter {nameof(userId)} must be greater than 0");
+                    return CreateErrorResponse($"Parameter {nameof(userId)} must be greater than 0");
 
                 _userService.RemoveUser(userId);
-                return CreateEmptyResponse();
+                return CreateResponse("User successfully removed.");
             }
             catch (Exception exception)
             {
@@ -114,15 +112,15 @@ namespace EatAsYouGoApi.Controllers
         [SwaggerDescription("Updates a user", "Updates a user")]
         [Route("api/users/update")]
         [HttpPost]
-        public IHttpActionResult UpdateRestaurant(UserDto userDto)
+        public IHttpActionResult UpdateUser(UserDto userDto)
         {
             try
             {
                 if (userDto == null)
-                    CreateErrorResponse($"Parameter {nameof(userDto)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(userDto)} cannot be null");
 
-                var updatedRestaurantDto = _userService.UpdateUser(userDto);
-                return CreateResponse(updatedRestaurantDto);
+                var updatedUserDto = _userService.UpdateUser(userDto);
+                return CreateResponse(updatedUserDto);
             }
             catch (Exception exception)
             {

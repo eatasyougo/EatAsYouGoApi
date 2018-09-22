@@ -56,7 +56,7 @@ namespace EatAsYouGoApi.Controllers
             try
             {
                 if (groupDto == null)
-                    CreateErrorResponse($"Parameter {nameof(groupDto)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(groupDto)} cannot be null");
 
                 var group = _groupService.AddNewGroup(groupDto);
                 return CreateResponse(group);
@@ -77,7 +77,7 @@ namespace EatAsYouGoApi.Controllers
             try
             {
                 if (groupId == 0)
-                    CreateErrorResponse($"Parameter {nameof(groupId)} must be greater than 0");
+                    return CreateErrorResponse($"Parameter {nameof(groupId)} must be greater than 0");
 
                 _groupService.RemoveGroup(groupId);
                 return CreateEmptyResponse();
@@ -97,7 +97,7 @@ namespace EatAsYouGoApi.Controllers
             try
             {
                 if (groupDto == null)
-                    CreateErrorResponse($"Parameter {nameof(groupDto)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(groupDto)} cannot be null");
 
                 var updatedRestaurantDto = _groupService.UpdateGroup(groupDto);
                 return CreateResponse(updatedRestaurantDto);

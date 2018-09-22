@@ -88,6 +88,10 @@
     <Compile Include="Migrations\201808121734230_InitialDatabaseSetup.Designer.cs">
       <DependentUpon>201808121734230_InitialDatabaseSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809192159110_AddLocationToAddress.cs" />
+    <Compile Include="Migrations\201809192159110_AddLocationToAddress.Designer.cs">
+      <DependentUpon>201809192159110_AddLocationToAddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -98,6 +102,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201808121734230_InitialDatabaseSetup.resx">
       <DependentUpon>201808121734230_InitialDatabaseSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809192159110_AddLocationToAddress.resx">
+      <DependentUpon>201809192159110_AddLocationToAddress.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

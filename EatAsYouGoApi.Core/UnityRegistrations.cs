@@ -27,6 +27,8 @@ namespace EatAsYouGoApi.Core
             container.RegisterType<IGroupService, GroupService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IDealService, DealService>(new ContainerControlledLifetimeManager());
             container.RegisterType(typeof (IDbContextFactory<>), typeof (DbContextFactory<>), new TransientLifetimeManager());
+            container.RegisterType<ISecurityService, SecurityService>();
+
             config.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

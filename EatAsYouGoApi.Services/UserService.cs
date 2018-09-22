@@ -40,7 +40,7 @@ namespace EatAsYouGoApi.Services
         public UserDto AddNewUser(UserDto userDto)
         {
             var user = Mapper.Map<UserDto, User>(userDto);
-            if(userDto.Groups == null || userDto.Groups.Count == 0)
+            if (userDto.Groups == null || userDto.Groups.Count == 0)
                 throw new InvalidOperationException("User must belong to at least one Group. Cannot add User.");
 
             var groups = userDto.Groups.Select(Mapper.Map<GroupDto, Group>).ToList();
@@ -77,9 +77,13 @@ namespace EatAsYouGoApi.Services
         public UserDto GetUserByEmailAndPassword(string email, string password, bool includeGroups)
         {
             var user = _userDataProvider.GetUserByEmailAndPassword(email, password);
+
+            if (user == null)
+                return null;
+
             List<GroupDto> groupDtos = null;
 
-            if (includeGroups && user?.UserGroups != null)
+            if (includeGroups && user.UserGroups != null)
             {
                 var groups = user.UserGroups.Select(ug => _groupDataProvider.GetGroupById(ug.GroupId)).ToList();
                 groupDtos = groups.Select(Mapper.Map<Group, GroupDto>).ToList();

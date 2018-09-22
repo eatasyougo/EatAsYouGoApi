@@ -30,3 +30,5 @@ EatAsYouGoApi\.Dtos/obj/
 /EatAsYouGoApi.DataProviders/obj/Release
 /EatAsYouGoApi.DataProviders/bin/Release
 /EatAsYouGoApi/Properties/PublishProfiles
+/EatAsYouGoApi.Helper
+/EatAsYouGoApi.DataProviders/bin

@@ -57,7 +57,7 @@ namespace EatAsYouGoApi.Controllers
             try
             {
                 if (menuItemDto == null)
-                    CreateErrorResponse($"Parameter {nameof(menuItemDto)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(menuItemDto)} cannot be null");
 
                 var addNewMenuItem = _menuItemService.AddNewMenuItem(menuItemDto);
                 return CreateResponse(addNewMenuItem);
@@ -78,7 +78,7 @@ namespace EatAsYouGoApi.Controllers
             try
             {
                 if (menuItemId == 0)
-                    CreateErrorResponse($"Parameter {nameof(menuItemId)} must be greater than 0");
+                    return CreateErrorResponse($"Parameter {nameof(menuItemId)} must be greater than 0");
 
                 _menuItemService.RemoveMenuItem(menuItemId);
                 return CreateEmptyResponse();
@@ -99,7 +99,7 @@ namespace EatAsYouGoApi.Controllers
             try
             {
                 if (menuItemDto == null)
-                    CreateErrorResponse($"Parameter {nameof(menuItemDto)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(menuItemDto)} cannot be null");
 
                 var updatedMenuItem = _menuItemService.UpdateMenuItem(menuItemDto);
                 return CreateResponse(updatedMenuItem);

@@ -1,0 +1,18 @@
+﻿using System;
+using System.Configuration;
+
+namespace EatAsYouGoApi.Helper
+{
+    public class Config
+    {
+        public static int AuthTokenExpiryInMins
+        {
+            get
+            {
+                int authTokenExpiryInMins;
+                int.TryParse(ConfigurationManager.AppSettings.Get("AuthTokenExpiryInMins"), out authTokenExpiryInMins);
+                return authTokenExpiryInMins;
+            }
+        }
+    }
+}
