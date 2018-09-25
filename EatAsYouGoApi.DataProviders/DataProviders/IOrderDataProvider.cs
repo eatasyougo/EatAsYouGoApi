@@ -6,7 +6,7 @@ namespace EatAsYouGoApi.DataLayer.DataProviders
     public interface IOrderDataProvider
     {
         IEnumerable<Order> GetAllOrders();
-        Order GetOrderById(int orderId);
+        Order GetOrderById(long orderId);
         Order SaveOrder(Order order);
         Order ChargeOrder(string stripeToken, Order order);
     }

@@ -30,7 +30,7 @@ namespace EatAsYouGoApi.DataLayer.DataProviders
             }
         }
 
-        public Order GetOrderById(int orderId)
+        public Order GetOrderById(long orderId)
         {
             using (var dbContext = _dbContextFactory.Create())
             {
@@ -86,8 +86,5 @@ namespace EatAsYouGoApi.DataLayer.DataProviders
             order.PaymentToken = stripeCharge.Id;
             return order;
         }
-
-
-
     }
 }

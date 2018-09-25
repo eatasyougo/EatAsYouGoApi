@@ -25,13 +25,14 @@ namespace EatAsYouGoApi.Services
             return Mapper.Map<List<OrderDto>>(_orderDataProvider.GetAllOrders());
         }
 
-        public IEnumerable<OrderDto> GetOrderById(int orderId)
+        public OrderDto GetOrderById(long orderId)
         {
-            return Mapper.Map<List<OrderDto>>(_orderDataProvider.GetAllOrders());
+            return Mapper.Map<OrderDto>(_orderDataProvider.GetOrderById(orderId));
         }
 
-        public OrderDto ChargeOrder(string stripeToken, Order order)
+        public OrderDto ChargeOrder(string stripeToken, OrderDto orderDto)
         {
+            Order order = _orderDataProvider.GetOrderById(orderDto.OrderId);
             int amountToCharge = (int)(Math.Round(order.Amount, 2) * 100);
             int applicationFee = (int)(Math.Round(order.Amount, 1) * 10);
             var chargeOptions = new StripeChargeCreateOptions()
@@ -44,7 +45,7 @@ namespace EatAsYouGoApi.Services
                 Description = $"{order.User.Email} ordered {order.OrderDetails.SelectMany(x => x.ItemsPurchased).Count()} items from {order.Restaurant.Name}",
                 ReceiptEmail = order.User.Email,
                 //Add destination account and application fee to charge restaurant
-                Destination = "acct_1Cy41CFpT7CVA8J8",
+                Destination = order.Restaurant.StripeAccountId,
                 ApplicationFee = applicationFee
             };
 
@@ -63,7 +64,5 @@ namespace EatAsYouGoApi.Services
             Order savedOrder = _orderDataProvider.SaveOrder(Mapper.Map<Order>(order));
             return Mapper.Map<OrderDto>(savedOrder);
         }
-
-
     }
 }
