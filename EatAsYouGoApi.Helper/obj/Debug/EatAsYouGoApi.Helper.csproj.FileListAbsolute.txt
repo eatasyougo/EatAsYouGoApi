@@ -1,0 +1,5 @@
+C:\Users\Ajay\Source\Repos\EatAsYouGoApi\EatAsYouGoApi.Helper\bin\Debug\EatAsYouGoApi.Helper.dll
+C:\Users\Ajay\Source\Repos\EatAsYouGoApi\EatAsYouGoApi.Helper\bin\Debug\EatAsYouGoApi.Helper.pdb
+C:\Users\Ajay\Source\Repos\EatAsYouGoApi\EatAsYouGoApi.Helper\obj\Debug\EatAsYouGoApi.Helper.csproj.CoreCompileInputs.cache
+C:\Users\Ajay\Source\Repos\EatAsYouGoApi\EatAsYouGoApi.Helper\obj\Debug\EatAsYouGoApi.Helper.dll
+C:\Users\Ajay\Source\Repos\EatAsYouGoApi\EatAsYouGoApi.Helper\obj\Debug\EatAsYouGoApi.Helper.pdb

@@ -7,8 +7,8 @@ namespace EatAsYouGoApi.Services.Interfaces
     public interface IOrderService
     {
         IEnumerable<OrderDto> GetAllOrders();
-        IEnumerable<OrderDto> GetOrderById(int orderId);
-        OrderDto ChargeOrder(string stripeToken, Order order);
+        OrderDto GetOrderById(long orderId);
         OrderDto SaveOrder(OrderDto order);
+        OrderDto ChargeOrder(string stripeToken, OrderDto order);
     }
 }

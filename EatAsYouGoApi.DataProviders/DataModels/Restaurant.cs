@@ -23,4 +23,11 @@ namespace EatAsYouGoApi.DataLayer.DataModels
 
         public virtual ICollection<Deal> Deals { get; set; }
     }
+
+    public class Commission
+    {
+        public decimal FromAmount { get; set; }
+        public decimal ToAmount { get; set; }
+        public decimal CommissionPercentage { get; set; }
+    }
 }
