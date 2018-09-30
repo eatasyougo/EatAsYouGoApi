@@ -14,5 +14,14 @@ namespace EatAsYouGoApi.Helper
                 return authTokenExpiryInMins;
             }
         }
+
+        public static int RefreshTokenExpiryInMins {
+            get
+            {
+                int refreshTokenExpiryInMins;
+                int.TryParse(ConfigurationManager.AppSettings.Get("RefreshTokenExpiryInMins"), out refreshTokenExpiryInMins);
+                return refreshTokenExpiryInMins;
+            }
+        }
     }
 }

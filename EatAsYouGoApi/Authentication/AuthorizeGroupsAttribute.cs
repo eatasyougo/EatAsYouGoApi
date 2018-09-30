@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
@@ -15,8 +16,8 @@ namespace EatAsYouGoApi.Authentication
 
         public override void OnAuthorization(HttpActionContext actionContext)
         {
-            var groups = Groups?.Split(',').Where(g => g != null).Select(g => g.Trim());
-            if (groups == null)
+            var allowedGroups = Groups?.Split(',').Where(g => g != null).Select(g => g.Trim());
+            if (allowedGroups == null)
             {
                 base.OnAuthorization(actionContext);
                 return;
@@ -28,18 +29,18 @@ namespace EatAsYouGoApi.Authentication
                 return;
             }
 
-            var currentUserObject = identity.Claims.FirstOrDefault(c => c.Type.Equals("CurrentUser"))?.Value;
-            if(currentUserObject == null)
+            var currentUserGroups = identity.Claims.FirstOrDefault(c => c.Type.Equals("CurrentUserGroups"))?.Value;
+            if(currentUserGroups == null)
             {
                 actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "User unauthorized");
                 return;
             }
 
-            var currentUser = JsonConvert.DeserializeObject<UserDto>(
-                currentUserObject,
+            var permittedGroups = JsonConvert.DeserializeObject<ICollection<GroupDto>>(
+                currentUserGroups,
                 new JsonSerializerSettings {NullValueHandling = NullValueHandling.Include});
 
-            var authorized = groups.Any(g => currentUser.Groups.Any(group => @group.GroupName.ToLower().Equals(g.ToLower())));
+            var authorized = allowedGroups.Any(g => permittedGroups.Any(group => group.GroupName.ToLower().Equals(g.ToLower())));
             if (!authorized)
             {
                 actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "User unauthorized");

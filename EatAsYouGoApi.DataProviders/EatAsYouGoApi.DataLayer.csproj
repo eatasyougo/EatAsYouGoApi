@@ -92,6 +92,10 @@
     <Compile Include="Migrations\201809192159110_AddLocationToAddress.Designer.cs">
       <DependentUpon>201809192159110_AddLocationToAddress.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809301806411_AddingRefreshToken.cs" />
+    <Compile Include="Migrations\201809301806411_AddingRefreshToken.Designer.cs">
+      <DependentUpon>201809301806411_AddingRefreshToken.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -105,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809192159110_AddLocationToAddress.resx">
       <DependentUpon>201809192159110_AddLocationToAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809301806411_AddingRefreshToken.resx">
+      <DependentUpon>201809301806411_AddingRefreshToken.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

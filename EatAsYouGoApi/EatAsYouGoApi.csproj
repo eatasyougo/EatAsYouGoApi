@@ -285,7 +285,7 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Authentication\Authentication.cs" />
+    <Compile Include="Authentication\Token.cs" />
     <Compile Include="Authentication\AuthorizeGroupsAttribute.cs" />
     <Compile Include="Authentication\TokenValidationHandler.cs" />
     <Compile Include="Controllers\BaseController.cs" />

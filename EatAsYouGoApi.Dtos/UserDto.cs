@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace EatAsYouGoApi.Dtos
 {
@@ -27,11 +28,6 @@ namespace EatAsYouGoApi.Dtos
         public string Password { get; set; }
 
         [DataMember]
-        [PasswordPropertyText(true)]
-        [Compare(nameof(Password), ErrorMessage = "Password and Confirm password do not match")]
-        public string ConfirmPassword { get; set; }
-
-        [DataMember]
         [Phone]
         public string Mobile { get; set; }
 
@@ -54,7 +50,10 @@ namespace EatAsYouGoApi.Dtos
         public bool IsActive { get; set; }
 
         [DataMember]
-        public virtual ICollection<GroupDto> Groups { get; set; }
+        [JsonIgnore]
+        public string RefreshToken { get; set; }
 
+        [DataMember]
+        public virtual ICollection<GroupDto> Groups { get; set; }
     }
 }
