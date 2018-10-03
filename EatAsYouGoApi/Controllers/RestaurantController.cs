@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using EatAsYouGoApi.Authentication;
 using EatAsYouGoApi.Dtos;
 using EatAsYouGoApi.Services.Interfaces;
 using Swagger.Net.Swagger.Annotations;
@@ -100,12 +99,13 @@ namespace EatAsYouGoApi.Controllers
         [SwaggerDescription("Adds new restaurant", "Adds new restaurant")]
         [Route("api/restaurants/add")]
         [HttpPost]
+        [AuthorizeGroups(Groups = "SiteAdministrators")]
         public IHttpActionResult AddRestaurant([FromBody]RestaurantDto restaurantDto)
         {
             try
             {
                 if (restaurantDto == null)
-                    CreateErrorResponse($"Parameter {nameof(restaurantDto)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(restaurantDto)} cannot be null");
 
                 var savedRestaurantDto = _restaurantService.AddNewRestaurant(restaurantDto);
                 return CreateResponse(savedRestaurantDto);
@@ -120,12 +120,13 @@ namespace EatAsYouGoApi.Controllers
         [SwaggerDescription("Removes a restaurant", "Removes a restaurant")]
         [Route("api/restaurants/delete/{restaurantId}")]
         [HttpPost]
+        [AuthorizeGroups(Groups = "SiteAdministrators")]
         public IHttpActionResult RemoveRestaurant(long restaurantId)
         {
             try
             {
                 if (restaurantId == 0)
-                    CreateErrorResponse($"Parameter {nameof(restaurantId)} must be greater than 0");
+                    return CreateErrorResponse($"Parameter {nameof(restaurantId)} must be greater than 0");
 
                 _restaurantService.RemoveRestaurant(restaurantId);
                 return CreateEmptyResponse();
@@ -140,12 +141,13 @@ namespace EatAsYouGoApi.Controllers
         [SwaggerDescription("Updates a restaurant", "Updates a restaurant")]
         [Route("api/restaurants/update")]
         [HttpPost]
+        [AuthorizeGroups(Groups = "SiteAdministrators,RestaurantUsers")]
         public IHttpActionResult UpdateRestaurant(RestaurantDto restaurantDto)
         {
             try
             {
                 if (restaurantDto == null)
-                    CreateErrorResponse($"Parameter {nameof(restaurantDto)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(restaurantDto)} cannot be null");
 
                 var updatedRestaurantDto = _restaurantService.UpdateRestaurant(restaurantDto);
                 return CreateResponse(updatedRestaurantDto);

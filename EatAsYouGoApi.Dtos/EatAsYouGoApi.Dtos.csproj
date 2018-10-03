@@ -61,6 +61,7 @@
     <Compile Include="AddressDto.cs" />
     <Compile Include="DealDto.cs" />
     <Compile Include="GroupDto.cs" />
+    <Compile Include="LoginRequestDto.cs" />
     <Compile Include="MenuItemDto.cs" />
     <Compile Include="OrderDetailsDto.cs" />
     <Compile Include="OrderDto.cs" />

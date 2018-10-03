@@ -27,6 +27,8 @@ namespace EatAsYouGoApi.DataLayer.DataModels
         [Required]
         public string PostCode { get; set; }
 
+        public string Location { get; set; }
+
         public bool IsActive { get; set; }
 
         public virtual Restaurant Restaurant { get; set; }

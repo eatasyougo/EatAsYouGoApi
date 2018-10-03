@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Http;
+using EatAsYouGoApi.Authentication;
 using EatAsYouGoApi.Dtos;
 using EatAsYouGoApi.Services.Interfaces;
 using Swagger.Net.Swagger.Annotations;
@@ -50,12 +51,13 @@ namespace EatAsYouGoApi.Controllers
         [SwaggerDescription("Adds new menu item", "Adds new menu item")]
         [Route("api/menuItems/add")]
         [HttpPost]
+        [AuthorizeGroups(Groups = "SiteAdministrators,RestaurantUsers")]
         public IHttpActionResult AddMenuItem([FromBody]MenuItemDto menuItemDto)
         {
             try
             {
                 if (menuItemDto == null)
-                    CreateErrorResponse($"Parameter {nameof(menuItemDto)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(menuItemDto)} cannot be null");
 
                 var addNewMenuItem = _menuItemService.AddNewMenuItem(menuItemDto);
                 return CreateResponse(addNewMenuItem);
@@ -70,12 +72,13 @@ namespace EatAsYouGoApi.Controllers
         [SwaggerDescription("Removes a menu item", "Removes a menu item")]
         [Route("api/menuItems/delete/{menuItemId}")]
         [HttpPost]
+        [AuthorizeGroups(Groups = "SiteAdministrators,RestaurantUsers")]
         public IHttpActionResult RemoveMenuItem(long menuItemId)
         {
             try
             {
                 if (menuItemId == 0)
-                    CreateErrorResponse($"Parameter {nameof(menuItemId)} must be greater than 0");
+                    return CreateErrorResponse($"Parameter {nameof(menuItemId)} must be greater than 0");
 
                 _menuItemService.RemoveMenuItem(menuItemId);
                 return CreateEmptyResponse();
@@ -90,12 +93,13 @@ namespace EatAsYouGoApi.Controllers
         [SwaggerDescription("Updates a menu item", "Updates a menu item")]
         [Route("api/menuItems/update")]
         [HttpPost]
+        [AuthorizeGroups(Groups = "SiteAdministrators,RestaurantUsers")]
         public IHttpActionResult UpdateMenuItem(MenuItemDto menuItemDto)
         {
             try
             {
                 if (menuItemDto == null)
-                    CreateErrorResponse($"Parameter {nameof(menuItemDto)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(menuItemDto)} cannot be null");
 
                 var updatedMenuItem = _menuItemService.UpdateMenuItem(menuItemDto);
                 return CreateResponse(updatedMenuItem);

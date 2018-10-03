@@ -30,6 +30,9 @@ namespace EatAsYouGoApi.Dtos
         public string PostCode { get; set; }
 
         [DataMember]
+        public string Location { get; set; }
+
+        [DataMember]
         public bool IsActive { get; set; }
     }
 }
