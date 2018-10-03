@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EatAsYouGoApi.DataLayer", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EatAsYouGoApi.Core", "EatAsYouGoApi.Core\EatAsYouGoApi.Core.csproj", "{7E07740C-B885-495B-A84F-8412F73EF4C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EatAsYouGoApi.Helper", "EatAsYouGoApi.Helper\EatAsYouGoApi.Helper.csproj", "{5F004625-9A51-4ABF-9422-D9BF49DF1353}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7E07740C-B885-495B-A84F-8412F73EF4C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E07740C-B885-495B-A84F-8412F73EF4C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E07740C-B885-495B-A84F-8412F73EF4C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F004625-9A51-4ABF-9422-D9BF49DF1353}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F004625-9A51-4ABF-9422-D9BF49DF1353}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F004625-9A51-4ABF-9422-D9BF49DF1353}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F004625-9A51-4ABF-9422-D9BF49DF1353}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

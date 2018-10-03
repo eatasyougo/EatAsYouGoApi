@@ -18,11 +18,6 @@ namespace EatAsYouGoApi.DataLayer.DataModels
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [PasswordPropertyText(true)]
-        [DataType(DataType.Password)]
-        [NotMapped]
-        public string ConfirmPassword { get; set; }
-
         [Required]
         [EmailAddress]
         public string Email { get; set; }
@@ -41,6 +36,8 @@ namespace EatAsYouGoApi.DataLayer.DataModels
         public long? RestaurantId { get; set; }
 
         public string PreferredLocation { get; set; }
+
+        public string RefreshToken { get; set; }
 
         public virtual ICollection<UserGroup> UserGroups { get; set; }
     }

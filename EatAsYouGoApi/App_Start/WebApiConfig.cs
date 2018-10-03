@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Formatting;
 using System.Web.Http;
 using AutoMapper;
+using EatAsYouGoApi.Authentication;
 using EatAsYouGoApi.Core;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -13,6 +14,8 @@ namespace EatAsYouGoApi
         {
             UnityRegistrations.Register(config);
             Mapper.Initialize(cfg => cfg.AddProfile(new AutoMapperProfile()));
+
+            config.MessageHandlers.Add(new TokenValidationHandler());
 
             // Web API configuration and services
             config.Formatters.Remove(config.Formatters.XmlFormatter);

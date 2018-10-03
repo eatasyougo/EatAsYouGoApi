@@ -33,7 +33,10 @@ namespace EatAsYouGoApi.Controllers
 
         protected virtual IHttpActionResult CreateErrorResponse(string errorMessage = null, Exception exception = null, HttpStatusCode httpStatusCode = HttpStatusCode.BadRequest)
         {
-            var errorResponse = Request.CreateErrorResponse(httpStatusCode, errorMessage??exception?.Message, exception);
+            var errorResponse = exception != null
+                ? Request.CreateErrorResponse(httpStatusCode, errorMessage ?? exception.Message, exception)
+                : Request.CreateErrorResponse(httpStatusCode, errorMessage);
+
             var result = ResponseMessage(errorResponse);
             return result;
         }

@@ -99,6 +99,14 @@
     <Compile Include="Migrations\201808121734230_InitialDatabaseSetup.Designer.cs">
       <DependentUpon>201808121734230_InitialDatabaseSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809192159110_AddLocationToAddress.cs" />
+    <Compile Include="Migrations\201809192159110_AddLocationToAddress.Designer.cs">
+      <DependentUpon>201809192159110_AddLocationToAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809301806411_AddingRefreshToken.cs" />
+    <Compile Include="Migrations\201809301806411_AddingRefreshToken.Designer.cs">
+      <DependentUpon>201809301806411_AddingRefreshToken.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201809151437527_Orders.cs" />
     <Compile Include="Migrations\201809151437527_Orders.Designer.cs">
       <DependentUpon>201809151437527_Orders.cs</DependentUpon>
@@ -113,6 +121,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201808121734230_InitialDatabaseSetup.resx">
       <DependentUpon>201808121734230_InitialDatabaseSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809192159110_AddLocationToAddress.resx">
+      <DependentUpon>201809192159110_AddLocationToAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809301806411_AddingRefreshToken.resx">
+      <DependentUpon>201809301806411_AddingRefreshToken.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809151437527_Orders.resx">
       <DependentUpon>201809151437527_Orders.cs</DependentUpon>

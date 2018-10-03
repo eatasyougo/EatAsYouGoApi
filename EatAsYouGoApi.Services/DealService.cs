@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
@@ -35,10 +36,14 @@ namespace EatAsYouGoApi.Services
             return Mapper.Map<Deal, DealDto>(deal);
         }
 
-        public DealDto AddNewDeal(DealDto deal)
+        public DealDto AddNewDeal(DealDto dealDto)
         {
-            var dealToAdd = Mapper.Map<DealDto, Deal>(deal);
-            var menuItemsToAdd = deal.MenuItems.Select(Mapper.Map<MenuItemDto, MenuItem>).ToList();
+            var dealToAdd = Mapper.Map<DealDto, Deal>(dealDto);
+
+            if (dealDto.MenuItems == null || dealDto.MenuItems.Count == 0)
+                throw new InvalidOperationException("There must be at least one menu item added to the deal to create a new deal.");
+
+            var menuItemsToAdd = dealDto.MenuItems.Select(Mapper.Map<MenuItemDto, MenuItem>).ToList();
             var newDeal = _dealDataProvider.AddNewDeal(dealToAdd, menuItemsToAdd);
 
             var newMenuItems = newDeal.DealMenuItems.Select(dmi => dmi.MenuItem).ToList();
@@ -51,6 +56,10 @@ namespace EatAsYouGoApi.Services
         public DealDto UpdateDeal(DealDto dealDto)
         {
             var deal = Mapper.Map<DealDto, Deal>(dealDto);
+
+            if (dealDto.MenuItems == null || dealDto.MenuItems.Count == 0)
+                throw new InvalidOperationException("There must be at least one menu item added to the deal to create a new deal.");
+
             var menuItems = dealDto.MenuItems.Select(Mapper.Map<MenuItemDto, MenuItem>).ToList();
             var updatedDeal = _dealDataProvider.UpdateDeal(deal, menuItems);
 

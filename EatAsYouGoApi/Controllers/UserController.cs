@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Web.Http;
+using EatAsYouGoApi.Authentication;
 using EatAsYouGoApi.Dtos;
 using EatAsYouGoApi.Services.Interfaces;
 using Swagger.Net.Swagger.Annotations;
 
 namespace EatAsYouGoApi.Controllers
 {
+    [AuthorizeGroups(Groups = "SiteAdministrators")]
     public class UserController : BaseController
     {
         private readonly IUserService _userService;
@@ -55,10 +57,9 @@ namespace EatAsYouGoApi.Controllers
             {
                 var user = _userService.GetUserByEmail(email);
 
-                if (user == null)
-                    CreateErrorResponse($"No user found with email - {email}");
-
-                return CreateResponse(user);
+                return user == null 
+                    ? CreateErrorResponse($"No user found with email - {email}") 
+                    : CreateResponse(user);
             }
             catch (Exception exception)
             {
@@ -69,12 +70,13 @@ namespace EatAsYouGoApi.Controllers
 
         [SwaggerDescription("Add new user", "Adds new user")]
         [Route("api/users/add")]
+        [HttpPost]
         public IHttpActionResult AddNewUser(UserDto userDto)
         {
             try
             {
                 if (userDto == null)
-                    CreateErrorResponse($"Parameter {nameof(userDto)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(userDto)} cannot be null");
 
                 var user = _userService.AddNewUser(userDto);
                 return CreateResponse(user);
@@ -95,10 +97,10 @@ namespace EatAsYouGoApi.Controllers
             try
             {
                 if (userId == 0)
-                    CreateErrorResponse($"Parameter {nameof(userId)} must be greater than 0");
+                    return CreateErrorResponse($"Parameter {nameof(userId)} must be greater than 0");
 
                 _userService.RemoveUser(userId);
-                return CreateEmptyResponse();
+                return CreateResponse("User successfully removed.");
             }
             catch (Exception exception)
             {
@@ -110,15 +112,15 @@ namespace EatAsYouGoApi.Controllers
         [SwaggerDescription("Updates a user", "Updates a user")]
         [Route("api/users/update")]
         [HttpPost]
-        public IHttpActionResult UpdateRestaurant(UserDto userDto)
+        public IHttpActionResult UpdateUser(UserDto userDto)
         {
             try
             {
                 if (userDto == null)
-                    CreateErrorResponse($"Parameter {nameof(userDto)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(userDto)} cannot be null");
 
-                var updatedRestaurantDto = _userService.UpdateUser(userDto);
-                return CreateResponse(updatedRestaurantDto);
+                var updatedUserDto = _userService.UpdateUser(userDto);
+                return CreateResponse(updatedUserDto);
             }
             catch (Exception exception)
             {
@@ -126,26 +128,5 @@ namespace EatAsYouGoApi.Controllers
                 return CreateErrorResponse(exception.Message, exception);
             }
         }
-
-        //[SwaggerDescription("Validate user", "Validate user")]
-        //[Route("api/users/validate")]
-        //[HttpPost]
-        //public IHttpActionResult ValidateUser(UserDto userDto)
-        //{
-        //    try
-        //    {
-        //        var validated = _userService.ValidateUser(userDto);
-
-        //        if (validated)
-        //            CreateErrorResponse("Failed to validate user");
-
-        //        return CreateResponse(userDto);
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        LogError(this.GetType(), exception.Message);
-        //        return CreateErrorResponse(exception.Message, exception);
-        //    }
-        //}
     }
 }

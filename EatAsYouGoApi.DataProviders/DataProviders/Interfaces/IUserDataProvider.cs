@@ -16,5 +16,7 @@ namespace EatAsYouGoApi.DataLayer.DataProviders.Interfaces
         void RemoveUser(long userId);
 
         User UpdateUser(User user, ICollection<Group> groups);
+
+        User GetUserByEmailAndPassword(string email, string password);
     }
 }

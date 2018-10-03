@@ -65,15 +65,14 @@ namespace EatAsYouGoApi.DataLayer.DataProviders
                 {
                     var userGroup = new UserGroup {User = user};
 
-                    var groupFound = dbContext.Groups.FirstOrDefault(g =>
+                    var groupFound = dbContext.Groups.FirstOrDefault(g => 
+                        g.GroupId == group.GroupId || 
                         g.GroupName.Trim().Equals(group.GroupName.Trim(), StringComparison.OrdinalIgnoreCase));
 
                     if (groupFound == null)
-                        dbContext.Groups.Add(group);
-                    else
-                        group.GroupId = groupFound.GroupId;
+                        throw new DataException($"Group with Id - {group.GroupId} or Name - {group.GroupName} does not exist. Please add the relevant group first before trying to add user to the group");
 
-                    userGroup.Group = group;
+                    userGroup.Group = groupFound;
                     user.UserGroups.Add(userGroup);
                 }
 
@@ -151,6 +150,17 @@ namespace EatAsYouGoApi.DataLayer.DataProviders
                 dbContext.SaveChanges();
 
                 return userToUpdate;
+            }
+        }
+
+        public User GetUserByEmailAndPassword(string email, string password)
+        {
+            using (var dbContext = _dbContextFactory.Create())
+            {
+                return dbContext.Users.Include(user => user.UserGroups)
+                    .FirstOrDefault(user =>
+                        user.Email.Trim().Equals(email.Trim(), StringComparison.OrdinalIgnoreCase) &&
+                        user.Password.Trim().Equals(password.Trim(), StringComparison.OrdinalIgnoreCase));
             }
         }
     }

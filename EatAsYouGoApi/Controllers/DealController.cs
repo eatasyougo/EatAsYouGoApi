@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Http;
+using EatAsYouGoApi.Authentication;
 using EatAsYouGoApi.Dtos;
 using EatAsYouGoApi.Services.Interfaces;
 using Swagger.Net.Swagger.Annotations;
@@ -120,12 +121,13 @@ namespace EatAsYouGoApi.Controllers
         [SwaggerDescription("Adds new deal", "Adds new deal")]
         [Route("api/deals/add")]
         [HttpPost]
+        [AuthorizeGroups(Groups = "SiteAdministrators,RestaurantUsers")]
         public IHttpActionResult AddNewDeal(DealDto deal)
         {
             try
             {
                 if (deal == null)
-                    CreateErrorResponse($"Parameter {nameof(deal)} cannot be null");
+                    return CreateErrorResponse($"Parameter {nameof(deal)} cannot be null");
 
                 var newDeal = _dealService.AddNewDeal(deal);
                 return CreateResponse(newDeal);
@@ -140,21 +142,31 @@ namespace EatAsYouGoApi.Controllers
         [SwaggerDescription("Updates a menu item", "Updates a menu item")]
         [Route("api/deals/update")]
         [HttpPost]
+        [AuthorizeGroups(Groups = "SiteAdministrators,RestaurantUsers")]
         public IHttpActionResult UpdateDeal(DealDto deal)
         {
-            var updatedDeal = _dealService.UpdateDeal(deal);
-            return CreateResponse(updatedDeal);
+            try
+            {
+                var updatedDeal = _dealService.UpdateDeal(deal);
+                return CreateResponse(updatedDeal);
+            }
+            catch (Exception exception)
+            {
+                LogError(this.GetType(), exception.Message);
+                return CreateErrorResponse(exception.Message, exception);
+            }
         }
 
         [SwaggerDescription("Removes a deal", "Removes a deal")]
         [Route("api/deals/delete/{dealId}")]
         [HttpPost]
+        [AuthorizeGroups(Groups = "SiteAdministrators,RestaurantUsers")]
         public IHttpActionResult DeleteDeal(long dealId)
         {
             try
             {
                 if (dealId == 0)
-                    CreateErrorResponse($"Parameter {nameof(dealId)} must be greater than 0");
+                    return CreateErrorResponse($"Parameter {nameof(dealId)} must be greater than 0");
 
                 _dealService.DeleteDeal(dealId);
                 return CreateEmptyResponse();
