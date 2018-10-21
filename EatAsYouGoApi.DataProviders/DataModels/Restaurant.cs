@@ -21,6 +21,8 @@ namespace EatAsYouGoApi.DataLayer.DataModels
 
         public virtual ICollection<MenuItem> MenuItems { get; set; }
 
+        public virtual ICollection<Order> Orders { get; set; }
+
         public virtual ICollection<Deal> Deals { get; set; }
     }
 

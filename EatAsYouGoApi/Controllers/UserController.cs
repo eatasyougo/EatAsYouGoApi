@@ -12,7 +12,8 @@ namespace EatAsYouGoApi.Controllers
     {
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, ILogService logService)
+            : base(logService)
         {
             _userService = userService;
         }

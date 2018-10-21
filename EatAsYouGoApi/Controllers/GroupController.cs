@@ -12,7 +12,8 @@ namespace EatAsYouGoApi.Controllers
     {
         private readonly IGroupService _groupService;
 
-        public GroupController(IGroupService groupService)
+        public GroupController(IGroupService groupService, ILogService logService)
+            : base(logService)
         {
             _groupService = groupService;
         }

@@ -295,6 +295,7 @@
     <Compile Include="Controllers\Group.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuItemsController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="ExceptionHandling\UnhandledExceptionLogger.cs" />

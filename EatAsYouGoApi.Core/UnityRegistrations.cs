@@ -28,6 +28,8 @@ namespace EatAsYouGoApi.Core
             container.RegisterType<IGroupService, GroupService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IDealService, DealService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IOrderService, OrderService>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IEmailService, EmailService>(new ContainerControlledLifetimeManager());
+            container.RegisterType<ILogService, LogService>(new ContainerControlledLifetimeManager());
             container.RegisterType(typeof (IDbContextFactory<>), typeof (DbContextFactory<>), new TransientLifetimeManager());
             container.RegisterType<ISecurityService, SecurityService>();
 

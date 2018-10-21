@@ -11,7 +11,8 @@ namespace EatAsYouGoApi.Controllers
     {
         private readonly IMenuItemService _menuItemService;
 
-        public MenuItemsController(IMenuItemService menuItemService)
+        public MenuItemsController(IMenuItemService menuItemService, ILogService logService)
+            : base(logService)
         {
             _menuItemService = menuItemService;
         }

@@ -4,15 +4,22 @@ using System.Net.Http;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Web.Http;
+using EatAsYouGoApi.Services.Interfaces;
 using log4net;
     
 namespace EatAsYouGoApi.Controllers
 {
     public abstract class BaseController : ApiController
     {
-        private static ILog _logger;
+        //private static ILog _logger;
 
-        protected static ILog Logger => _logger ?? (_logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType));
+        protected BaseController(ILogService logService)
+        {
+            LogService = logService;
+        }
+
+        //protected static ILog Logger => _logger ?? (_logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType));
+        protected ILogService LogService { get; }
 
         protected virtual IHttpActionResult CreateResponse<T>(T value)
         {
@@ -43,7 +50,8 @@ namespace EatAsYouGoApi.Controllers
 
         protected virtual void LogError(Type type = null, string errorMessage = null, [CallerMemberName]string methodName = null)
         {
-            Logger.Error($"Error occured: {type?.Name} - {methodName} - {errorMessage}");
+            LogService.Error($"Error occured: {type?.Name} - {methodName} - {errorMessage}");
+            //Logger.Error($"Error occured: {type?.Name} - {methodName} - {errorMessage}");
         }
     }
 }

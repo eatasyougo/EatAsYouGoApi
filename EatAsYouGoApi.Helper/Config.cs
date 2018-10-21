@@ -23,5 +23,7 @@ namespace EatAsYouGoApi.Helper
                 return refreshTokenExpiryInMins;
             }
         }
+
+        public static string SmtpHost => ConfigurationManager.AppSettings.Get("SmtpHost");
     }
 }

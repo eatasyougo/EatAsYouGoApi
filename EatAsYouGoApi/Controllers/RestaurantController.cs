@@ -11,7 +11,8 @@ namespace EatAsYouGoApi.Controllers
     {
         private readonly IRestaurantService _restaurantService;
 
-        public RestaurantController(IRestaurantService restaurantService)
+        public RestaurantController(IRestaurantService restaurantService, ILogService logService)
+            : base(logService)
         {
             _restaurantService = restaurantService; 
         }

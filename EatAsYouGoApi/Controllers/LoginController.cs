@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Security.Claims;
-using System.Security.Principal;
 using System.Web.Http;
 using EatAsYouGoApi.Authentication;
 using EatAsYouGoApi.Dtos;
@@ -19,7 +17,8 @@ namespace EatAsYouGoApi.Controllers
         private readonly IUserService _userService;
         private readonly ISecurityService _securityService;
 
-        public LoginController(IUserService userService, ISecurityService securityService)
+        public LoginController(IUserService userService, ISecurityService securityService, ILogService logService)
+            : base(logService)
         {
             _userService = userService;
             _securityService = securityService;
@@ -51,9 +50,15 @@ namespace EatAsYouGoApi.Controllers
                 var refreshToken = Token.CreateNewToken(user, Config.RefreshTokenExpiryInMins);
 
                 user.RefreshToken = refreshToken;
-                _userService.UpdateUser(user);
+                var updatedUser = _userService.UpdateUser(user);
 
-                var userToken = new UserToken {Authorization = authToken, Refresh = refreshToken};
+                var userToken = new UserToken
+                {
+                    Authorization = authToken,
+                    Refresh = refreshToken,
+                    User = updatedUser
+                };
+
                 return CreateResponse(userToken);
             }
             catch (Exception exception)
@@ -72,6 +77,9 @@ namespace EatAsYouGoApi.Controllers
             {
                 if (userDto == null)
                     return CreateErrorResponse($"Parameter {nameof(userDto)} cannot be null");
+
+                var password = _securityService.EncryptToString(userDto.Password);
+                userDto.Password = password;
 
                 var user = _userService.AddNewUser(userDto);
                 return CreateResponse(user);
@@ -158,5 +166,7 @@ namespace EatAsYouGoApi.Controllers
         public string Authorization { get; set; }
 
         public string Refresh { get; set; }
+
+        public UserDto User { get; set; }
     }
 }
